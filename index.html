@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f3edde"><meta name="description" content="墨守成规：楚营至宋城，九攻与九拒。一款可热座、人机和在线对战的连线桌游。"><title>墨守成规 · 九攻九拒</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header><a class="brand" href="./" aria-label="墨守成规首页"><span class="seal">墨</span><span>墨守成规<small>九攻 · 九拒</small></span></a><nav><button id="rules">游戏规则</button><button id="library">九攻／九拒</button><a href="./rulebook.html" target="_blank" rel="noopener">规则书 ↗</a></nav></header>
+<main id="home">
+ <section class="hero"><div class="eyebrow">战国 · 楚宋之际　/　双人策略桌游</div><h1>一木可攻。<br>一转可守。</h1><p class="intro">公输盘九设攻城之机变，墨子九拒之。<br>在交错的经纬之间，以木为桥，以时为局。</p><div class="hero-note"><span class="red-dot"></span>红方贯通南北 <span class="blue-dot"></span>蓝方贯通东西，或守到木尽</div><div class="hero-line"></div><p class="muted">一场至多九局 · 公开技能 · 无需注册</p></section>
+ <section class="entry-panel"><div class="eyebrow">入 局</div><h2>择一席，论攻守</h2><label class="format-label">对弈赛制 <select id="match-wins"><option value="2">三局两胜 · 2张技能</option><option value="3" selected>五局三胜 · 3张技能</option><option value="4">七局四胜 · 4张技能</option><option value="5">九局五胜 · 5张技能</option></select></label><button class="mode-card" id="hotseat"><span class="mode-symbol">对</span><span><strong>同席对弈</strong><small>本地热座 · 与身旁的朋友轮流落子</small></span><span>↗</span></button><button class="mode-card" id="ai"><span class="mode-symbol">试</span><span><strong>问道机巧</strong><small>简易人机 · 练习置木、易械与九术</small></span><span>↗</span></button><label class="ai-side">人机执方 <select id="human-side"><option value="red">公输盘 · 红方先行</option><option value="blue">墨子 · 蓝方守城</option></select></label><button class="mode-card" id="online"><span class="mode-symbol">邀</span><span><strong>千里邀局</strong><small>邀请码联机 · 邀一位朋友共赴楚宋</small></span><span>↗</span></button><button id="resume" class="secondary" hidden>继续上次本地对局</button><button id="resume-room" class="secondary" hidden>恢复在线房间</button><p class="small muted">v0.4.1 试玩版 · 木片池 36 · 41 个桥位<br>技能与平衡仍在打磨，欢迎实战反馈。</p></section>
+</main>
+<main id="game" hidden>
+ <div class="game-heading"><div><div class="eyebrow" id="mode-label"></div><h2 id="round-title">第一局</h2></div><div class="game-links"><button id="home-button">返回主菜单</button><button id="close-room" hidden>结束房间</button></div></div>
+ <div id="room-bar" class="room-bar" hidden></div>
+ <div class="game-layout"><aside class="player-panel red-panel" id="red-panel"></aside>
+ <section class="arena"><div class="turn-bar"><span id="turn-label" aria-live="polite"></span><span>余木 <strong id="pool"></strong><small> / 36</small></span></div><progress id="pool-progress" max="36" value="36" aria-label="公共木片池"></progress>
+  <div class="board-wrap"><div class="north">宋 城 <small>北</small></div><div class="west">西垣<small>蓝方起点</small></div><div id="board"></div><div class="east">东垣<small>蓝方终点</small></div><div class="south">楚 营 <small>南</small></div></div>
+  <div class="legend"><span><i class="red-dot"></i>公输盘节点</span><span><i class="blue-dot"></i>墨子节点</span><span>○ 可落点　▧ 保护　× 封锁</span></div>
+  <div class="actions"><button id="place" class="selected">置木</button><button id="rotate">易械 ↻</button><button id="pass" hidden>无着停手</button><button id="cancel">取消选择</button></div>
+  <p id="instruction" class="instruction" aria-live="polite"></p><section id="result" class="result" hidden></section>
+  <details class="chronicle"><summary>对弈记录 <span id="log-count"></span></summary><ol id="log"></ol><div id="history"></div></details>
+ </section><aside class="player-panel blue-panel" id="blue-panel"></aside></div>
+</main>
+<footer><span>墨守成规</span> · 木尽而守成，术去而功成。<span class="footer-right">历史意象，原创规则</span></footer>
+<dialog id="modal"><div class="modal-head"><h2 id="modal-title"></h2><button id="modal-close" aria-label="关闭弹窗">关闭 ×</button></div><div id="modal-body"></div></dialog>
+<div id="toast" role="status" hidden></div><script type="module" src="./app.mjs"></script>
+</body></html>

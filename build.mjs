@@ -1,0 +1,1 @@
+import fs from 'node:fs';fs.mkdirSync('dist',{recursive:true});for(const f of ["app.mjs","book.mjs","engine.mjs","favicon.svg","index.html","rulebook.html","RULEBOOK.md","RULEBOOK.pdf","rules.mjs","style.css"])fs.copyFileSync(f,'dist/'+f);fs.writeFileSync('dist/.nojekyll','');

@@ -1,0 +1,13 @@
+services:
+  moshou:
+    build: .
+    ports:
+      - "4173:4173"
+    environment:
+      DATA_DIR: /data
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+    volumes:
+      - rooms:/data
+    restart: unless-stopped
+volumes:
+  rooms:

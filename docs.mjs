@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {CARDS,VERSION} from './engine.mjs';
+import {SECTIONS,rulesHTML,libraryHTML} from './rules.mjs';
+const heading=`墨守成规 · 完整规则书 v${VERSION}`;
+const md=`# ${heading}\n\n2026-10-18 · 2人 · 公开技能 · 最多9局\n\n`+SECTIONS.map(s=>`## ${s.title}\n\n${s.paragraphs.join('\n\n')}\n`).join('\n')+'\n## 九攻与九拒：完整牌文\n\n'+['red','blue'].map(p=>`### ${p==='red'?'九攻 · 公输盘':'九拒 · 墨子'}\n\n`+CARDS.filter(c=>c.side===p).map(c=>`#### ${c.name}\n\n${c.text}\n\n代替本次行动，耗1木，每小局一次。\n`).join('\n')).join('\n');
+fs.writeFileSync('RULEBOOK.md',md);fs.writeFileSync('RULEBOOK.md',md);
+const html=`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${heading}</title><link rel="stylesheet" href="./style.css"></head><body><main class="book"><div class="book-nav"><a href="./">返回游戏</a><a href="./RULEBOOK.md" download>下载 Markdown</a><a href="./RULEBOOK.pdf" download>下载 PDF</a><button id="print">打印</button></div><div class="eyebrow">楚宋之间 · 以木论道</div><h1>墨守成规</h1><p>完整规则书 v${VERSION} · 2026-10-18</p><div class="rules-content">${rulesHTML()}<h2>九攻与九拒：完整牌文</h2>${libraryHTML()}</div></main><script type="module" src="./book.mjs"></script></body></html>`;
+fs.writeFileSync('rulebook.html',html);
+fs.writeFileSync('book.mjs',"document.getElementById('print').onclick=()=>window.print();\n");
+fs.mkdirSync('docs',{recursive:true});fs.writeFileSync('docs/rules-data.json',JSON.stringify({heading,sections:SECTIONS,cards:CARDS},null,2));
+console.log('Generated Markdown, HTML and PDF source from shared rules.');

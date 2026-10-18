@@ -1,0 +1,17 @@
+{
+  "name": "moshou-chenggui",
+  "version": "0.4.1",
+  "private": true,
+  "type": "module",
+  "description": "墨守成规：九攻九拒双人连线桌游",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test *.test.mjs",
+    "simulate": "node simulate.mjs",
+    "docs": "node docs.mjs",
+    "build": "node build.mjs"
+  }
+}

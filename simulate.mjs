@@ -1,0 +1,3 @@
+import {newMatch,chooseAI,applyAction,seeded,legalActions} from './engine.mjs';
+const games=Number(process.argv[2])||60;
+for(const strategy of ['random','heuristic'])for(const pool of [32,36,40]){let red=0,blue=0,exhausted=0,plies=0;for(let i=0;i<games;i++){let s=newMatch(1000+i,{pool});const rng=seeded(9000+i);while(s.phase==='playing'){const actions=strategy==='random'?legalActions(s):null;s=applyAction(s,actions?actions[Math.floor(rng()*actions.length)]:chooseAI(s,rng));}if(s.roundWinner==='red')red++;else blue++;if(s.reason==='公共木片池耗尽')exhausted++;plies+=s.ply;}console.log(JSON.stringify({strategy,pool,games,red,blue,exhausted,meanPlies:Math.round(plies/games*10)/10}));}

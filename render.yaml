@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: moshou-chenggui
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    disk:
+      name: room-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DATA_DIR
+        value: /data
+      - key: ALLOWED_ORIGINS
+        sync: false
